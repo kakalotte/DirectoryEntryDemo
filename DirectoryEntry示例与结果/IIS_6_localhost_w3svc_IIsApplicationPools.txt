@@ -1,0 +1,68 @@
+IIS6下 IIsApplicationPool所有属性列表
+===========================================================
+===========================================================
+===========================================================
+AppPoolIdentityType[0] = 2
+AppPoolQueueLength[0] = 1000
+CPULimit[0] = 0
+CPUResetInterval[0] = 5
+DisallowOverlappingRotation[0] = False
+DisallowRotationOnConfigChange[0] = False
+IdleTimeout[0] = 20
+LoadBalancerCapabilities[0] = 2
+LogEventOnRecycle[0] = 137
+MaxProcesses[0] = 1
+OrphanWorkerProcess[0] = False
+PeriodicRestartMemory[0] = 0
+PeriodicRestartPrivateMemory[0] = 0
+PeriodicRestartRequests[0] = 0
+PeriodicRestartTime[0] = 1740
+PingingEnabled[0] = True
+PingInterval[0] = 30
+PingResponseTime[0] = 90
+RapidFailProtection[0] = True
+RapidFailProtectionInterval[0] = 5
+RapidFailProtectionMaxCrashes[0] = 5
+ShutdownTimeLimit[0] = 90
+SMPAffinitized[0] = False
+SMPProcessorAffinityMask[0] = -1
+StartupTimeLimit[0] = 90
+KeyType[0] = IIsApplicationPools
+AdminACL[0] = System.__ComObject
+WAMUserName[0] = IWAM_iZar2ctzjgm4naZ
+WAMUserPass[0] = _c5TH~3,d'LWSP
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    KeyType[0] = IIsApplicationPool
+    AppPoolIdentityType[0] = 2
+    AppPoolQueueLength[0] = 1000
+    CPULimit[0] = 0
+    CPUResetInterval[0] = 5
+    DisallowOverlappingRotation[0] = False
+    DisallowRotationOnConfigChange[0] = False
+    IdleTimeout[0] = 20
+    LoadBalancerCapabilities[0] = 2
+    LogEventOnRecycle[0] = 137
+    MaxProcesses[0] = 1
+    OrphanWorkerProcess[0] = False
+    PeriodicRestartMemory[0] = 0
+    PeriodicRestartPrivateMemory[0] = 0
+    PeriodicRestartRequests[0] = 0
+    PeriodicRestartTime[0] = 1740
+    PingingEnabled[0] = True
+    PingInterval[0] = 30
+    PingResponseTime[0] = 90
+    RapidFailProtection[0] = True
+    RapidFailProtectionInterval[0] = 5
+    RapidFailProtectionMaxCrashes[0] = 5
+    ShutdownTimeLimit[0] = 90
+    SMPAffinitized[0] = False
+    SMPProcessorAffinityMask[0] = -1
+    StartupTimeLimit[0] = 90
+    AdminACL[0] = System.__ComObject
+    WAMUserName[0] = IWAM_iZar2ctzjgm4naZ
+    WAMUserPass[0] = _c5TH~3,d'LWSP
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+===========================================================
+===========================================================
+===========================================================

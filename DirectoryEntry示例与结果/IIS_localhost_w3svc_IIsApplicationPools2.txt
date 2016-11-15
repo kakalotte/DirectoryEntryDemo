@@ -1,0 +1,127 @@
+示例代码：
+string entPath = String.Format("IIS://localhost/w3svc");
+            DirectoryEntry ent = new DirectoryEntry(entPath);
+
+            foreach (DirectoryEntry child in ent.Children)
+            {
+                if (child.SchemaClassName.Equals("IIsApplicationPools", StringComparison.OrdinalIgnoreCase))
+                {
+                    //第一级
+                    foreach (string name in child.Properties.PropertyNames)
+                    {
+                        System.DirectoryServices.PropertyValueCollection col = child.Properties[name];
+                        for (int i = 0; i < col.Count; i++)
+                        {
+                            this.richTextBox1.AppendText(String.Format("{0}[{1}] = {2}\n", name, i, col[i]));
+                        }
+                    }
+                    //第二级
+
+                    foreach (DirectoryEntry subchild in child.Children)
+                    {
+                        this.richTextBox1.AppendText("Name:" + subchild.Name + "\n");
+                        this.richTextBox1.AppendText("Path:" + subchild.Path + "\n");
+                        this.richTextBox1.AppendText("Site:" + subchild.Site + "\n" + "\n");
+
+                        foreach (string name in subchild.Properties.PropertyNames)
+                        {
+                            System.DirectoryServices.PropertyValueCollection col = subchild.Properties[name];
+                            for (int i = 0; i < col.Count; i++)
+                            {
+                                this.richTextBox1.AppendText(String.Format("    {0}[{1}] = {2}\n", name, i, col[i]));
+                            }
+                        }
+                        this.richTextBox1.AppendText("一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一\n");
+                       
+                    }
+                }
+
+                this.richTextBox1.AppendText("===========================================================\n");
+            }
+返回示例：
+===========================================================
+KeyType[0] = IIsApplicationPools
+AppPoolIdentityType[0] = 4
+Name:DefaultAppPool
+Path:IIS://localhost/w3svc/APPPOOLS/DefaultAppPool
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedPipelineMode[0] = 0
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:sdcms
+Path:IIS://localhost/w3svc/APPPOOLS/sdcms
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    Enable32BitAppOnWin64[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:wecenter
+Path:IIS://localhost/w3svc/APPPOOLS/wecenter
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:xinnongquan
+Path:IIS://localhost/w3svc/APPPOOLS/xinnongquan
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:zh
+Path:IIS://localhost/w3svc/APPPOOLS/zh
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedRuntimeVersion[0] = v4.0
+    ManagedPipelineMode[0] = 1
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:9006
+Path:IIS://localhost/w3svc/APPPOOLS/9006
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+Name:9007
+Path:IIS://localhost/w3svc/APPPOOLS/9007
+Site:
+
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedPipelineMode[0] = 1
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================

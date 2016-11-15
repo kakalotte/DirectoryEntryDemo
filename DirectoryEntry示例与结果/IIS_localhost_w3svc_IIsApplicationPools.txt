@@ -1,0 +1,99 @@
+此示例可获得应用程序池的相关配置属性
+
+示例代码：
+string entPath = String.Format("IIS://localhost/w3svc");
+            DirectoryEntry ent = new DirectoryEntry(entPath);
+
+            foreach (DirectoryEntry child in ent.Children)
+            {
+                if (child.SchemaClassName.Equals("IIsApplicationPools", StringComparison.OrdinalIgnoreCase))
+                {
+                    //第一级
+                    foreach (string name in child.Properties.PropertyNames)
+                    {
+                        System.DirectoryServices.PropertyValueCollection col = child.Properties[name];
+                        for (int i = 0; i < col.Count; i++)
+                        {
+                            this.richTextBox1.AppendText(String.Format("{0}[{1}] = {2}\n", name, i, col[i]));
+                        }
+                    }
+                    //第二级
+
+                    foreach (DirectoryEntry subchild in child.Children)
+                    {
+                        foreach (string name in subchild.Properties.PropertyNames)
+                        {
+                            System.DirectoryServices.PropertyValueCollection col = subchild.Properties[name];
+                            for (int i = 0; i < col.Count; i++)
+                            {
+                                this.richTextBox1.AppendText(String.Format("    {0}[{1}] = {2}\n", name, i, col[i]));
+                            }
+                        }
+                        this.richTextBox1.AppendText("一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一\n");
+                       
+                    }
+                }
+
+                this.richTextBox1.AppendText("===========================================================\n");
+            }
+			
+
+返回结果示例：
+===========================================================
+KeyType[0] = IIsApplicationPools
+AppPoolIdentityType[0] = 4
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedPipelineMode[0] = 0
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    Enable32BitAppOnWin64[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedRuntimeVersion[0] = v4.0
+    ManagedPipelineMode[0] = 1
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    AppPoolIdentityType[0] = 4
+    AppPoolState[0] = 2
+    Win32Error[0] = 0
+    AppPoolCommand[0] = 1
+    KeyType[0] = IIsApplicationPool
+    ManagedPipelineMode[0] = 1
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================

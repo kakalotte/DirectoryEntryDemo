@@ -1,0 +1,54 @@
+此示例可获得IIS程序的相关信息
+示例代码：
+string entPath = String.Format("IIS://localhost/w3svc");
+            DirectoryEntry ent = new DirectoryEntry(entPath);
+
+            foreach (DirectoryEntry child in ent.Children)
+            {
+                if (child.SchemaClassName.Equals("IIsWebInfo", StringComparison.OrdinalIgnoreCase))
+                {
+                    //第一级
+                    foreach (string name in child.Properties.PropertyNames)
+                    {
+                        System.DirectoryServices.PropertyValueCollection col = child.Properties[name];
+                        for (int i = 0; i < col.Count; i++)
+                        {
+                            this.richTextBox1.AppendText(String.Format("{0}[{1}] = {2}\n", name, i, col[i]));
+                        }
+                    }
+                    //第二级
+
+                    foreach (DirectoryEntry subchild in child.Children)
+                    {
+                        foreach (string name in subchild.Properties.PropertyNames)
+                        {
+                            System.DirectoryServices.PropertyValueCollection col = subchild.Properties[name];
+                            for (int i = 0; i < col.Count; i++)
+                            {
+                                this.richTextBox1.AppendText(String.Format("    {0}[{1}] = {2}\n", name, i, col[i]));
+                            }
+                        }
+                        this.richTextBox1.AppendText("一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一\n");
+                       
+                    }
+                }
+
+                this.richTextBox1.AppendText("===========================================================\n");
+            }
+			
+			
+返回结果：
+===========================================================
+===========================================================
+KeyType[0] = IIsWebInfo
+MajorIIsVersionNumber[0] = 7
+MinorIIsVersionNumber[0] = 5
+LogModuleList[0] = NCSA 公用日志文件格式,Microsoft IIS 日志文件格式,W3C 扩展日志文件格式,ODBC 日志记录
+CustomErrorDescriptions[0] = 400,0,,,0
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================

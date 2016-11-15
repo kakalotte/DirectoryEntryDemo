@@ -1,0 +1,79 @@
+此示例会返回所有IIS filter
+示例代码：
+string entPath = String.Format("IIS://localhost/w3svc");
+            DirectoryEntry ent = new DirectoryEntry(entPath);
+
+            foreach (DirectoryEntry child in ent.Children)
+            {
+                if (child.SchemaClassName.Equals("IIsFilters", StringComparison.OrdinalIgnoreCase))
+                {
+                    //第一级
+                    foreach (string name in child.Properties.PropertyNames)
+                    {
+                        System.DirectoryServices.PropertyValueCollection col = child.Properties[name];
+                        for (int i = 0; i < col.Count; i++)
+                        {
+                            this.richTextBox1.AppendText(String.Format("{0}[{1}] = {2}\n", name, i, col[i]));
+                        }
+                    }
+                    //第二级
+
+                    foreach (DirectoryEntry subchild in child.Children)
+                    {
+                        foreach (string name in subchild.Properties.PropertyNames)
+                        {
+                            System.DirectoryServices.PropertyValueCollection col = subchild.Properties[name];
+                            for (int i = 0; i < col.Count; i++)
+                            {
+                                this.richTextBox1.AppendText(String.Format("    {0}[{1}] = {2}\n", name, i, col[i]));
+                            }
+                        }
+                        this.richTextBox1.AppendText("一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一\n");
+                       
+                    }
+                }
+
+                this.richTextBox1.AppendText("===========================================================\n");
+            }
+返回结果：
+KeyType[0] = IIsFilters
+FilterLoadOrder[0] = ISAPI_Rewrite_x64,ISAPI_Rewrite_32,ASP.Net_2.0.50727-64,ASP.Net_2.0.50727.0,ASP.Net_2.0_for_V1.1,ASP.Net_4.0_64bit,ASP.Net_4.0_32bit
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Program Files\Helicon\ISAPI_Rewrite3\ISAPI_Rewrite_x64.dll
+    FilterEnableCache[0] = False
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Program Files\Helicon\ISAPI_Rewrite3\ISAPI_Rewrite.dll
+    FilterEnableCache[0] = False
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Windows\Microsoft.NET\Framework64\v2.0.50727\aspnet_filter.dll
+    FilterEnableCache[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_filter.dll
+    FilterEnableCache[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_filter.dll
+    FilterEnableCache[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_filter.dll
+    FilterEnableCache[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsFilter
+    FilterPath[0] = C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_filter.dll
+    FilterEnableCache[0] = True
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+    KeyType[0] = IIsCompressionSchemes
+一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
+===========================================================
